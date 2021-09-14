@@ -35,9 +35,9 @@ response:
 Each pair have its own staking smart contract.
 
 On Bombay I instantiated:
-- PSI-UST staking contract: `terra1tzqldygkpskczx9kvrnnlzp5eaxjvqa9n2kzut`
-- PSI-nLuna staking contract: `terra1lfky467gfgacucrj2jndqrxdudk05n85wnn86u`
-- PSI-nEth staking contract: `terra12mv4fs5kutznggrjl5v4ll6eg8nvme4np0tk65`
+- PSI-UST pool address: `terra1vu36vl68csfpm5faut372gj3g7mwlzfexncp38`
+- PSI-nLuna pool address: `terra1aqcp4mav0cj6cxa0jgs38c3xjv6n5h5x52xt3g`
+- PSI-nETH pool address: `terra15laqpswauhhmteqa7dny4fgzl4e9mf0sqcd2az`
 
 ## How do you claim a reward for LP Pool?
 
