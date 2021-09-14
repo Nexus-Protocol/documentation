@@ -47,6 +47,54 @@ Execute `{"withdraw": {}}` message on staking LP contract.
 
 Execute `send` on LP token contract (cw20) with `{"bond": {} }` and contract address of Staking contract.
 
+## Is it possible to provide liquidity and stake returned LP tokens in one transaction?
+
+Yes, it is possible, via "AutoStake" function of staking SC.
+In order to do that you need to send `auto_stake` message to staking SC. But, before that you need to send `increase_allowance` to cw20 contract of 
+token that you want to provide.
+For example, if you want to provide liquidity for `<cw20_token> - UST` pair, you need to execute 2 transactions:
+
+1. On cw20 contract:
+```json
+{
+  "increase_allowance": {
+    "amount": "<some_amount>",
+    "spender": "<staking_contract>"
+  }
+}
+```
+
+2. On staking contract:
+```json
+{
+  "auto_stake": {
+    "assets": [
+      {
+        "amount": "<cw20_tokens_amount>",
+        "info": {
+          "token": {
+            "contract_addr": "<cw20_token_addr>"
+          }
+        }
+      },
+      {
+        "amount": "<uust_amount>",
+        "info": {
+          "native_token": {
+            "denom": "uusd"
+          }
+        }
+      }
+    ],
+    "slippage_tolerance": "<slippage_tolerance>"
+  }
+}
+```
+Also do not forget to send coins: `coins - "[{\"amount\":\"<uust_amount>\",\"denom\":\"uusd\"}]"`
+(it is not needed if you provide liquidity for `cw20 - cw20` pair).
+
+You need to give user ability to choose `slippage_tolerance` (default value should be: `0.01`).
+
 ## How do you stake Psi?
 
 Execute `send` on Psi token contract (cw20) with `{"stake_voting_tokens": {} }` and contract address of Governance contract.
