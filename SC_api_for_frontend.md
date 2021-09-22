@@ -453,3 +453,29 @@ epoch_interest = now(gov_share_index) - 7_days_ago(gov_share_index);\
 \
 gov_staking_apr = epoch_interest * number_of_blocks_per_year / passed_blocks * 100;
 ```
+
+## How to calculate Psi circulation supply
+
+Query Psi token with `{"token_info": {}}`
+
+response:
+```json
+{
+  "name":"Nexus Governance Token",
+  "symbol":"Psi",
+  "decimals":6,
+  "total_supply":"10000000000000000"
+}
+```
+
+So, we have `total_supply`. But some tokens is not in curculation, so we need to substract:
+1. tokens in vesting contracts
+2. tokens in LP staking contracts
+3. tokens in community pool
+4. vesting tokens for Pylon Swap (how to calculate them?)
+5. vesting tokens for Pylon Pool (how to calculate them?)
+6. Nexus Team tokens to vote in DAO for first 1 year (3% from total supply, which is 300_000_000)
+7. tokens in Airdrop SC
+
+So, we need to query all those contracts for Psi balance ([how to query cw20 token balance](#How-to-get-PSI-governance-staking-APR))
+and substract from `total_supply`.
