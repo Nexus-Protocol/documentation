@@ -479,3 +479,31 @@ So, we have `total_supply`. But some tokens is not in curculation, so we need to
 
 So, we need to query all those contracts for Psi balance ([how to query cw20 token balance](#How-to-get-PSI-governance-staking-APR))
 and substract from `total_supply`.
+
+## How to claim Airdrop
+
+User should send `Claim` message to Airdrop contract address ([bombay-11 airdrop contract](https://finder.terra.money/bombay-11/address/terra190ays2r593pmgkmxgjva2fklxgl2fux34qh8qz)):
+```json
+{
+"claim":
+	{
+	"stage": 22,
+	"amount": "530522770",
+	"proof": [
+			"40a4de0240f091bca5f0d1560f6de90446cc7f97fb5a752c408bffb27fe4385a",
+			"b8a2e6111a6467bf9c4de5a26066f2ac4e2c7d074418f39b3a7b033a36e1e234",
+			"14d1206bb1a90abe81d87cc425830bb5dee97a79e4c26d68de39e6b0c8f9d5b5",
+			"ba9b2b2526857282eb8634e50460738078887e602edb156663e7617df5a16602",
+			"17e21165cabec7ca34a49a3b4b8a870cf5626cf109ffb08ad0818a2b5181d1f0",
+			"4ae82cf6c4f76d418e49f85e69f99b23a9fd8ecf3cc39a0342f91ad56fe08694",
+			"c90db902b65e0bb32345bd472858395ae80948f75513d4e0a195830972aff3c2",
+			"453c69622712d342341d54c5c4aabeb367a1c5da1c2746cd3becfbfffeca4085",
+			"abb9f206febdb065cb63f8c535020eb8321f28f4ff4dcc69bb3ee4efc9f2656c",
+			"6f8a9615a4170b58e487ad658ef9637b86f3c8954b42a8854b516cb1f1735e1d",
+			"24e8c4eb0c7c1bdee7d9b82a860055a89db9726f9dedf58a22957232076767c9",
+			"86302ec88a79e10d3cebca5dab857fd9dfaf50b9984aa7fd806395535e7e0067",
+			"6e60ac703f10d30171ffcdf4a1dc5e66fab5d1b820b060aed9d5b3927bc14d04"
+		]
+	}
+}
+```
