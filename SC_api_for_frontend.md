@@ -424,7 +424,7 @@ ust_in_basset_contract_address = ust_in_basset_contract_address * basset_and_man
 loan_amount = loan_amount * basset_and_manual_ltv_difference;\
 ```
 
-Also, `nexus_protocol_fee` will be `zero` for manual LVT.
+Now, make all calculations as [here](#calculat-basset-vault-APR) but with those two numbers updated. Also, `nexus_protocol_fee` will be `zero` for manual LVT.
 
 ## How to get PSI governance staking APR?
 
