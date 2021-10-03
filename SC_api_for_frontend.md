@@ -408,6 +408,24 @@ nexus_protocol_fee = (nexus_basset_vault_strategy_aim_ltv - anchor_borrow_users_
 nexus_basset_vault_net_apr_after_fee = nexus_basset_vault_net_apr * (1 - nexus_protocol_fee);
 ```
 
+#### **calculat basset manual vault APR**
+
+Manual means if user will do borrow & deposit by himself. User will have lower LTV then bAsset vault. So, basically, all numbers will be smaller.
+To get difference between manual and vault:
+```python
+nexus_basset_vault_strategy_aim_ltv = 0.8;\
+anchor_borrow_users_manual_ltv = 0.58;\
+basset_and_manual_ltv_difference = anchor_borrow_users_manual_ltv / nexus_basset_vault_strategy_aim_ltv;\
+```
+
+Okey, now we have difference. This LTV difference will influence at number in vault (`borrow_amount`, `ust_buffer`, `loan_amount`):
+```python
+ust_in_basset_contract_address = ust_in_basset_contract_address * basset_and_manual_ltv_difference;\
+loan_amount = loan_amount * basset_and_manual_ltv_difference;\
+```
+
+Also, `nexus_protocol_fee` will be `zero` for manual LVT.
+
 ## How to get PSI governance staking APR?
 
 Query Nexus PSI token for balance for Nexus Governance contract with `{"balance":{"address":"<governance_contract_addr>"}}` ([bombay-10 psi token](https://finder.terra.money/bombay-10/address/terra1y6lc6t8f9vst037e49mec02x6e9aflct0l9ret))
