@@ -169,6 +169,10 @@ You will get response:
   ]
 }
 ```
+We will need `staked_lp_tokens` & `total_lp_tokens` to get the ratio of staked LP tokens - we do not reward users who provide liquidity, but dont stake LP tokens.
+To get `total_lp_tokens` you need to query `token_info` on LP token SC ([how to query cw20 token info](#How-to-calculate-Psi-circulation-supply)).
+To get `staked_lp_tokens` you need to get balance of LP tokens on Staking SC ([how to query cw20 token balance](#How-to-get-PSI-governance-staking-APR)).
+
 You need distribution schedules (it is array). So, between `start_time` and `end_time` contract will distribute `amount` of PSI tokens.
 I will create schedule for 1 year.
 This mean you can calculate APR by this logic:
@@ -178,7 +182,8 @@ psi_price = UST_amount_in_pool / PSI_amount_in_pool;
 psi_distribution_per_second = 100000000000000 / (1662800400 - 1631264400) / 1_000_000;
 seconds_per_year = 60 * 60 * 24 * 365;
 pool_ust_value = UST_amount_in_pool * 2 / 1_000_000;
-APR = psi_price * psi_distribution_per_second * seconds_per_year / pool_ust_value * 100;
+staked_lp_tokens_ratio = staked_lp_tokens / total_lp_tokens;
+APR = psi_price * psi_distribution_per_second * seconds_per_year / pool_ust_value * staked_lp_tokens_ratio * 100;
 ```
 
 ## How to get APR for bAsset vault?
