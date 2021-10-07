@@ -258,7 +258,7 @@ But in order to do that you need several values:
 - `market_balance` (UST amount in Anchor Market contract)
 You can do that by `Bank` query in `terra-js`:
 ```javascript
-const coins = await lcd_client.bank.balance(balance_config.address);
+const coins = await lcd_client.bank.balance("{anchor_market_contract_address}");
 ```
 
 Okey, now query
