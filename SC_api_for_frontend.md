@@ -472,7 +472,7 @@ Calculate `epoch_interest` & `passed_blocks`:
 ```python
 number_of_blocks_per_year = 4656810;\
 passed_blocks = now(block_height) - 7_days_ago(block_height);\
-epoch_interest = now(gov_share_index) - 7_days_ago(gov_share_index);\
+epoch_interest = (now(gov_share_index) / 7_days_ago(gov_share_index)) - 1;\
 \
 gov_staking_apr = epoch_interest * number_of_blocks_per_year / passed_blocks * 100;
 ```
