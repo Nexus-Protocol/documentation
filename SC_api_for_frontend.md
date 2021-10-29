@@ -99,7 +99,7 @@ You need to give user ability to choose `slippage_tolerance` (default value shou
 
 Execute `send` on Psi token contract (cw20) with `{"stake_voting_tokens": {} }` and contract address of Governance contract.
 
-## How do you get the amount deposited on bAsset Vault?
+## How do you get the amount deposited on bAssetVault?
 
 Query `custody_bAsset` contract with message `{ "borrower": { "address": "<basse_vault_addr>" } }` ([bombay-10 contract](https://finder.terra.money/bombay-10/address/terra1ltnkx0mv7lf2rca9f8w740ashu93ujughy4s7p))
 response:
@@ -186,7 +186,7 @@ staked_lp_tokens_ratio = staked_lp_tokens / total_lp_tokens;
 APR = psi_price * psi_distribution_per_second * seconds_per_year / pool_ust_value * staked_lp_tokens_ratio * 100;
 ```
 
-## How to get APR for bAsset vault?
+## How to get APR for bAssetVault?
 
 Our vault profit is based on Anchor Earn and on Achor Borrow incentivizing.
 
@@ -290,9 +290,9 @@ anchor_borrow_interest_apr = anchor_interest_model_rate * number_of_blocks_per_y
 
 `anchor_borrow_net_apr = anchor_borrow_distribution_apr - anchor_borrow_interest_apr`
 
-### bAsset vault APR
+### bAssetVault APR
 
-bAsset vault doing:
+bAssetVault doing:
 - borrow on Anchor
 - split loan (UST) to buffer for emergency case and to depositing part
 - deposit to Anchor Earn
@@ -316,7 +316,7 @@ response:
 
 Now, we need to get amount of bAsset deposited, you can find how to do it [here](#How-do-you-get-the-amount-deposited-on-bAsset-Vault).
 
-#### get bAsset vault buffer size
+#### get bAssetVault buffer size
 
 Also, bAssetVault do not deposit to Acnhor Earn 100% of loan, it have some UST buffer for emergency case. So, you need to query what is UST balance on bAssetVault contract.
 You can do that by `Bank` query in `terra-js`:
@@ -342,7 +342,7 @@ response:
 #### get Nexus Protocol fees
 
 Nexus protocol use some part of profit to inflate Community Pool and to reward Governance stakers.
-We should substract those from total basset vault apr.
+We should substract those from total bAssetVault apr.
 
 In order to get those parts you need to query Nexus Psi Distributor contract with `{"config": {}}` ([bombay-10 contract for bLuna](https://finder.terra.money/bombay-10/address/terra1fs6nrhk5y2kd0x6gmkdahykfvh2yg0r5fn07m3))
 (it is different for each bAsset)
@@ -361,7 +361,7 @@ response:
 }
 ```
 
-Also, you need `borrow_ltv_aim`, get it from query Nexus bAsset vault strategy contract with `{"config": {}}` ([bombay-10 contract for bLuna](https://finder.terra.money/bombay-10/address/terra1g4p0xvmwywm2ec3xgyhmjgj542wydg2zk36yum))
+Also, you need `borrow_ltv_aim`, get it from query Nexus bAssetVault strategy contract with `{"config": {}}` ([bombay-10 contract for bLuna](https://finder.terra.money/bombay-10/address/terra1g4p0xvmwywm2ec3xgyhmjgj542wydg2zk36yum))
 (it is different for each bAsset)
 
 response:
@@ -385,9 +385,9 @@ Okey, now you can calculate Nexus fees:
 nexus_protocol_fee = (borrow_ltv_aim - manual_ltv) * fee_rate;
 ```
 
-#### **calculat basset vault APR**
+#### **calculat bAssetVault APR**
 
-Okey, now we have everything we need to calculate `bAsset vault APR`:
+Okey, now we have everything we need to calculate `bAssetVault APR`:
 ```python
 ust_in_basset_contract_address = 25602312 / 1_000_000;\
 basset_deposited = 80000005 / 1_000_000;\
@@ -415,7 +415,7 @@ nexus_basset_vault_net_apr_after_fee = nexus_basset_vault_net_apr * (1 - nexus_p
 
 #### **calculat basset manual vault APR**
 
-Manual means if user will do borrow & deposit by himself. User will have lower LTV then bAsset vault. So, basically, all numbers will be smaller.
+Manual means if user will do borrow & deposit by himself. User will have lower LTV then bAssetVault. So, basically, all numbers will be smaller.
 To get difference between manual and vault:
 ```python
 nexus_basset_vault_strategy_aim_ltv = 0.8;\
