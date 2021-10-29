@@ -318,7 +318,7 @@ Now, we need to get amount of bAsset deposited, you can find how to do it [here]
 
 #### get bAsset vault buffer size
 
-Also, bAsset do not deposit to Acnhor Earn 100% of loan, it have some UST buffer for emergency case. So, you need to query what is UST balance on bAsset vault contract.
+Also, bAssetVault do not deposit to Acnhor Earn 100% of loan, it have some UST buffer for emergency case. So, you need to query what is UST balance on bAssetVault contract.
 You can do that by `Bank` query in `terra-js`:
 ```javascript
 const coins = await lcd_client.bank.balance(balance_config.address);
