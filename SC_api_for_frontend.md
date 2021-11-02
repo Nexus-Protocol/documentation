@@ -504,6 +504,43 @@ So, we have `total_supply`. But some tokens is not in curculation, so we need to
 So, we need to query all those contracts for Psi balance ([how to query cw20 token balance](#How-to-get-PSI-governance-staking-APR))
 and substract from `total_supply`.
 
+## How to calculate TVL
+
+#### calculate Nexus Vault AUM (Value of assets under management in Nexus Vault)
+
+Query Anchor Overseer with `{ "collaterals": { "borrower": "<bAsset_vault_address>" } }`  
+response:
+```json
+{
+  "borrower": "terra1g5apu9hq965tdavzhw7l6s43u5hru4xqsm6tat",
+  "collaterals": [ [ "terra1u0t35drzyy0mujj8rkdyzhe264uls4ug3wdp3x", "22159764966" ] ]
+}
+```
+
+**bAsset_amount** = 22159764966 / 1_000_000
+
+Query Anchor Oracle with `"price": { "base": <bAsset_token_address>, quote: "uusd" }`  
+response:
+```json
+{
+  "rate": "44.099778004706764767",
+  "last_updated_base": 1635861158,
+  "last_updated_quote": 9999999999
+}
+```
+
+**bAsset_price** = 44.099778004706764767
+
+**nexus_vault_aum** = bLuna_amount * bLuna_price + bEth_amount * bEth_price
+
+#### calculate TVL
+
+Then we need to take the **gov_total_staked** calculation from [here](#How-to-get-PSI-governance-staking-APR)
+
+Then we need to take the **psi_price** calculation from [here](#How-to-get-APR-for-LP)
+
+tvl = nexus_vault_aum + (gov_total_staked  / 1_000_000 * psi_price)
+
 ## How to claim Airdrop
 
 User should send `Claim` message to Airdrop contract address ([bombay-11 airdrop contract](https://finder.terra.money/bombay-11/address/terra190ays2r593pmgkmxgjva2fklxgl2fux34qh8qz)):
