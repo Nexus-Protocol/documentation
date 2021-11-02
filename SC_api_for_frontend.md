@@ -519,7 +519,7 @@ response:
 
 **bAsset_amount** = 22159764966 / 1_000_000
 
-Query Anchor Oracle with `"price": { "base": <bAsset_token_address>, quote: "uusd" }`  
+Query Anchor Oracle with `{"price": { "base": <bAsset_token_address>, quote: "uusd" }}`  
 response:
 ```json
 {
