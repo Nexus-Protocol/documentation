@@ -517,8 +517,6 @@ response:
 }
 ```
 
-**bAsset_amount** = 22159764966 / 1_000_000
-
 Query Anchor Oracle with `{"price": { "base": <bAsset_token_address>, quote: "uusd" }}`  
 response:
 ```json
@@ -529,9 +527,11 @@ response:
 }
 ```
 
-**bAsset_price** = 44.099778004706764767
-
-**nexus_vault_aum** = bLuna_amount * bLuna_price + bEth_amount * bEth_price
+```python
+bAsset_amount = 22159764966 / 1_000_000
+bAsset_price = 44.099778004706764767
+nexus_vault_aum = bLuna_amount * bLuna_price + bEth_amount * bEth_price
+```
 
 #### calculate TVL
 
