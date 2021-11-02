@@ -539,7 +539,9 @@ Then we need to take the **gov_total_staked** calculation from [here](#How-to-ge
 
 Then we need to take the **psi_price** calculation from [here](#How-to-get-APR-for-LP)
 
+```python
 tvl = nexus_vault_aum + (gov_total_staked  / 1_000_000 * psi_price)
+```
 
 ## How to claim Airdrop
 
