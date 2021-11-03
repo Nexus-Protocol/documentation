@@ -544,6 +544,49 @@ Then we need to take the **psi_price** calculation from [here](#How-to-get-APR-f
 tvl = nexus_vault_aum + (gov_total_staked / 1_000_000 * psi_price)
 ```
 
+## How to calculate bAsset vault LTV Ratio
+
+Query bAsset custody contract with `{ "borrower": { "address": "<bAsset_vault_address>" }`
+response:
+```json
+{
+  "borrower": "terra1cda4adzngjzcn8quvfu2229s8tedl5t306352x",
+  "balance": "1222391157158",
+  "spendable": "0"
+}
+```
+`total_deposited_amount = 1222391157158`
+
+Query Anchor Oracle with `{"price": { "base": <bAsset_token_address>, quote: "uusd" }}`  
+response:
+```json
+{
+  "rate": "48.136951329897092855",
+  "last_updated_base": 1635955967,
+  "last_updated_quote": 9999999999
+}
+```
+`bAsset_price = 48.136951329897092855`
+
+Query Anchor Market with `{ "borrower_info": { "borrower": <bAsset_vault_address> } }`
+response:
+```json
+{
+  "borrower": "terra1cda4adzngjzcn8quvfu2229s8tedl5t306352x",
+  "interest_index": "1.161167310187158444",
+  "reward_index": "0.231283464302524987",
+  "loan_amount": "27697505699602",
+  "pending_rewards": "239409129.826621590879222029"
+}
+```
+`loan_amount = 27697505699602`
+
+#### calculate bAsset vault LTV Ratio
+```python
+total_deposited_amount_in_ust = total_deposited_amount * bAsset_price
+bAsset_vault_ltv_ratio = loan_amount / total_deposited_amount_in_ust * 100
+```
+
 ## How to claim Airdrop
 
 User should send `Claim` message to Airdrop contract address ([bombay-11 airdrop contract](https://finder.terra.money/bombay-11/address/terra190ays2r593pmgkmxgjva2fklxgl2fux34qh8qz)):
