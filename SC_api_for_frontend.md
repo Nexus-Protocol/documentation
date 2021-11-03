@@ -499,7 +499,8 @@ So, we have `total_supply`. But some tokens is not in curculation, so we need to
 5. vesting tokens for Pylon Pool (columbus-5 addr: `terra1azmtgucd9tk33sk368vqzlvh4vepncfqtywwqv`)
 6. Nexus Team tokens to vote in DAO for first 1 year (3% from total supply, which is 300_000_000) (columbus-5 addr: `terra1ra9u2hg25kyrjr7n7fxqlexg66g28n674zqmye`)
 7. tokens in Airdrop SC (columbus-5 addr: `terra1992lljnteewpz0g398geufylawcmmvgh8l8v96`)
-8. tokens that later will be used to incentivise nLuna-Psi & nEth-Psie LP (columbus-5 addr: `terra1s5wkurdh4sw47lgnk5em4h69v5vh9dncmkhyrg`)
+8. tokens in nLuna-Psi staking (columbus-5 addr: `terra1hs4ev0ghwn4wr888jwm56eztfpau6rjcd8mczc`)
+8. tokens in nEth-Psi staking (columbus-5 addr: `terra1lws09x0slx892ux526d6atwwgdxnjg58uan8ph`)
 
 So, we need to query all those contracts for Psi balance ([how to query cw20 token balance](#How-to-get-PSI-governance-staking-APR))
 and substract from `total_supply`.
