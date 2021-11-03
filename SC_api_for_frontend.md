@@ -583,6 +583,9 @@ from here (&#8593;) `loan_amount` (amount of borrower's liability) is what we ne
 
 #### calculate bAsset vault LTV Ratio
 ```python
+total_deposited_amount = 1222391157158
+bAsset_price = 48.136951329897092855
+loan_amount = 27697505699602
 total_deposited_amount_in_ust = total_deposited_amount * bAsset_price
 bAsset_vault_ltv_ratio = loan_amount / total_deposited_amount_in_ust * 100
 ```
