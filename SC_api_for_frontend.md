@@ -557,7 +557,7 @@ response:
 ```
 `total_deposited_amount = 1222391157158`
 
-Query Anchor Oracle with `{"price": { "base": <bAsset_token_address>, quote: "uusd" }}`  
+Query Anchor Oracle with `{"price": { "base": "<bAsset_token_address>", quote: "uusd" }}`  
 response:
 ```json
 {
@@ -568,7 +568,7 @@ response:
 ```
 `bAsset_price = 48.136951329897092855`
 
-Query Anchor Market with `{ "borrower_info": { "borrower": <bAsset_vault_address> } }`
+Query Anchor Market with `{ "borrower_info": { "borrower": "<bAsset_vault_address>" } }`
 response:
 ```json
 {
