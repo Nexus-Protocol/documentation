@@ -555,7 +555,7 @@ response:
   "spendable": "0"
 }
 ```
-`total_deposited_amount = 1222391157158`
+from here (&#8593;) we need the `balance`, it is amount of bAsset deposited as collateral
 
 Query Anchor Oracle with `{"price": { "base": "<bAsset_token_address>", quote: "uusd" }}`  
 response:
@@ -566,7 +566,7 @@ response:
   "last_updated_quote": 9999999999
 }
 ```
-`bAsset_price = 48.136951329897092855`
+from here (&#8593;) we need the `rate`, which means the price of the token in UST
 
 Query Anchor Market with `{ "borrower_info": { "borrower": "<bAsset_vault_address>" } }`
 response:
@@ -579,7 +579,7 @@ response:
   "pending_rewards": "239409129.826621590879222029"
 }
 ```
-`loan_amount = 27697505699602`
+from here (&#8593;) `loan_amount` (amount of borrower's liability) is what we need
 
 #### calculate bAsset vault LTV Ratio
 ```python
