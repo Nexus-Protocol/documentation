@@ -183,7 +183,7 @@ psi_distribution_per_second = 100000000000000 / (1662800400 - 1631264400) / 1_00
 seconds_per_year = 60 * 60 * 24 * 365;
 pool_ust_value = UST_amount_in_pool * 2 / 1_000_000;
 staked_lp_tokens_ratio = staked_lp_tokens / total_lp_tokens;
-APR = psi_price * psi_distribution_per_second * seconds_per_year / pool_ust_value * staked_lp_tokens_ratio * 100;
+APR = (psi_price * psi_distribution_per_second * seconds_per_year) / (pool_ust_value * staked_lp_tokens_ratio) * 100;
 ```
 
 ## How to get APR for bAssetVault?
