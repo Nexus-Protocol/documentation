@@ -493,14 +493,17 @@ response:
 
 So, we have `total_supply`. But some tokens is not in curculation, so we need to substract:
 1. tokens in vesting contracts (columbus-5 addr: `terra15jggavtx37dsmfjy6sed7nnyccw2v5298xlt5g`)
-2. tokens in LP staking contracts (columbus-5 addr: `terra12kzewegufqprmzl20nhsuwjjq6xu8t8ppzt30a`)
+2. tokens in Terraswap Psi-UST staking contract (columbus-5 addr: `terra12kzewegufqprmzl20nhsuwjjq6xu8t8ppzt30a`)
 3. tokens in community pool (columbus-5 addr: `terra16mtntdg7rkvt3q5hcz8nqr6hj8mme5jmrtk8y2` & `terra1cuydpfxaen3m0l00nkn29s8kks0gk9pjvq7ep7`)
 4. vesting tokens for Pylon Swap (columbus-5 addr: `terra12k0p3qvfhy6j5e3ef8kzusy29lzwykk5d95kk5`)
 5. vesting tokens for Pylon Pool (columbus-5 addr: `terra1fmnedmd3732gwyyj47r5p03055mygce98dpte2`)
 6. Nexus Team tokens to vote in DAO for first 1 year (3% from total supply, which is 300_000_000) (columbus-5 addr: `terra1ra9u2hg25kyrjr7n7fxqlexg66g28n674zqmye`)
 7. tokens in Airdrop SC (columbus-5 addr: `terra1992lljnteewpz0g398geufylawcmmvgh8l8v96`)
-8. tokens in nLuna-Psi staking (columbus-5 addr: `terra1hs4ev0ghwn4wr888jwm56eztfpau6rjcd8mczc`)
-8. tokens in nEth-Psi staking (columbus-5 addr: `terra1lws09x0slx892ux526d6atwwgdxnjg58uan8ph`)
+8. tokens in Terraswa nLuna-Psi staking (columbus-5 addr: `terra1hs4ev0ghwn4wr888jwm56eztfpau6rjcd8mczc`)
+9. tokens in Terraswa nEth-Psi staking (columbus-5 addr: `terra1lws09x0slx892ux526d6atwwgdxnjg58uan8ph`)
+10. tokens in Astroport Psi-UST staking contract (columbus-5 addr: `terra1fmu29xhg5nk8jr0p603y5qugpk2r0ywcyxyv7k`)
+11. tokens in Astroport nLuna-Psi staking (columbus-5 addr: `terra1sxzggeujnxrd7hsx7uf2l6axh2uuv4zz5jadyg`)
+12. tokens in Astroport nEth-Psi staking (columbus-5 addr: `terra13n2sqaj25ugkt79k3evhvua30ut9qt8q0268zc`)
 
 So, we need to query all those contracts for Psi balance ([how to query cw20 token balance](#How-to-get-PSI-governance-staking-APR))
 and substract from `total_supply`.
