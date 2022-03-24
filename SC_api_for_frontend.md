@@ -207,9 +207,9 @@ To calculate APY you need to multiply it by number of blocks per year, which is 
 
 So, Anchor Earn APY: 
 ```python
-deposit_rate = 0.000000041734138975;
+anchor_deposit_rate = 0.000000041734138975;
 number_of_blocks_per_year = 4656810;
-anchor_earn_apy = deposit_rate * number_of_blocks_per_year * 100;
+anchor_earn_apy = anchor_deposit_rate * number_of_blocks_per_year * 100;
 ```
 
 ### Get Anchor Borrow Net APR
@@ -402,15 +402,16 @@ anchor_borrow_net_apr = anchor_borrow_distribution_apr - anchor_borrow_interest_
 anchor_earn_apy = 19.434795572016975;\
 \
 nexus_basset_vault_apr_from_loan = basset_vault_ltv * anchor_borrow_net_apr / 100;\
-nexus_basset_vault_apr_from_lending = basset_vault_lending_portion * anchor_earn_apy / 100;\
+nexus_basset_vault_apr_from_lending = basset_vault_lending_portion * ((1 + anchor_deposit_rate * number_of_blocks_per_year)^(1 / (365.25 * 3)) - 1) * 365.25 * 3 / 100;\
 \
 nexus_basset_vault_net_apr = (nexus_basset_vault_apr_from_loan + nexus_basset_vault_apr_from_lending) * 100;\
 \
 nexus_basset_vault_strategy_aim_ltv = 0.8;\
 anchor_borrow_users_manual_ltv = 0.58;\
 nexus_basset_vault_strategy_fee_rate = 0.5;\
+swap_fees = 0.003;\
 nexus_protocol_fee = (nexus_basset_vault_strategy_aim_ltv - anchor_borrow_users_manual_ltv) * nexus_basset_vault_strategy_fee_rate;\
-nexus_basset_vault_net_apr_after_fee = nexus_basset_vault_net_apr * (1 - nexus_protocol_fee);
+nexus_basset_vault_net_apr_after_fee = nexus_basset_vault_net_apr * (1 - nexus_protocol_fee) * (1 - swap_fees);
 ```
 
 #### **calculat basset manual vault APR**
