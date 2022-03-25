@@ -402,7 +402,7 @@ anchor_borrow_net_apr = anchor_borrow_distribution_apr - anchor_borrow_interest_
 anchor_earn_apy = 19.434795572016975;\
 \
 nexus_basset_vault_apr_from_loan = basset_vault_ltv * anchor_borrow_net_apr / 100;\
-nexus_basset_vault_apr_from_lending = basset_vault_lending_portion * ((1 + anchor_deposit_rate * number_of_blocks_per_year)^(1 / (365.25 * 3)) - 1) * 365.25 * 3 / 100;\
+nexus_basset_vault_apr_from_lending = basset_vault_lending_portion * ((1 + anchor_deposit_rate * number_of_blocks_per_year)^(1 / (365.25 * 3)) - 1) * 365.25 * 3;\
 \
 nexus_basset_vault_net_apr = (nexus_basset_vault_apr_from_loan + nexus_basset_vault_apr_from_lending) * 100;\
 \
